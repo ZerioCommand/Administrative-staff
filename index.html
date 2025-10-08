@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Админ состав</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+      color: white;
+      min-height: 100vh;
+      padding: 30px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Навигация */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      padding: 15px 0;
+      margin-bottom: 20px;
+    }
+
+    .navbar h2 {
+      font-size: 1.6rem;
+      color: #d0d0ff;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+    }
+
+    .toggle-btn {
+      background: rgba(50, 50, 100, 0.7);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+
+    .toggle-btn:hover {
+      background: rgba(80, 80, 200, 0.6);
+      transform: scale(1.05);
+    }
+
+    /* Скрытый текст */
+    #hidden-text {
+      display: none;
+      width: 100%;
+      max-width: 1200px;
+      background: rgba(10, 10, 20, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 30px;
+      border-radius: 16px;
+      margin-top: 20px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    #hidden-text h3 {
+      color: #ffcc66;
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    #hidden-text ol {
+      padding-left: 20px;
+      margin-bottom: 15px;
+    }
+
+    #hidden-text li {
+      margin-bottom: 8px;
+    }
+
+    /* Основной контент */
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.3rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      color: #d0d0ff;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .block-1 { flex: 1; min-width: 280px; max-width: 300px; }
+    .block-2 { flex: 2; min-width: 280px; }
+    .block-3 { flex: 3; min-width: 280px; }
+    .block-4 { flex: 4; min-width: 250px; }
+    .block-5 { flex: 5; min-width: 200px; }
+
+    .user {
+      background: rgba(10, 10, 20, 0.65);
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(100, 100, 255, 0.1);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      flex: 1;
+      min-width: 250px;
+    }
+
+    .user:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Ссылки */
+    .user a {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      text-decoration: none;
+      color: white;
+      background: rgba(30, 30, 50, 0.7);
+      border-radius: 10px;
+      transition: all 0.2s ease;
+    }
+
+    .user a:hover {
+      background: rgba(80, 80, 200, 0.55);
+      transform: scale(1.02);
+    }
+
+    /* Текстовые строки */
+    .user .top-row,
+    .user .nickname,
+    .user .bottom-row {
+      display: block;
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 10px;
+      font-size: 1rem;
+    }
+
+    .user .top-row {
+      color: #ffcc66;
+      font-weight: bold;
+      background: rgba(50, 40, 80, 0.6);
+    }
+
+    .user .nickname {
+      color: #66ccff;
+      font-weight: bold;
+      font-size: 1.3rem;
+      background: rgba(25, 35, 70, 0.6);
+    }
+
+    .user .bottom-row {
+      color: #a0a0ff;
+      font-style: italic;
+      background: rgba(40, 40, 70, 0.6);
+    }
+
+    @media (max-width: 900px) {
+      .navbar {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .row {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .block-1, .block-2, .block-3, .block-4, .block-5 {
+        max-width: 100%;
+        width: 100%;
+      }
+      
+      .user {
+        width: 100%;
+        max-width: 400px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .navbar h2 {
+        font-size: 1.3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <h2>Админ состав проекта</h2>
+    <button class="toggle-btn" id="toggleInterface">Правила</button>
+  </div>
+  <input 
+  type="text" 
+  id="searchInput" 
+  placeholder="Поиск по нику..." 
+  aria-label="Поиск по нику администратора"
+  style="
+    margin: 15px 0 25px;
+    padding: 12px 20px;
+    width: 100%;
+    max-width: 600px;
+    border-radius: 12px;
+    border: none;
+    background: rgba(20, 20, 40, 0.7);
+    color: white;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    outline: none;
+    transition: all 0.3s ease;
+  "
+/>
+
+  <div id="hidden-text">
+    <h3>Доп правила для администраторов проекта</h3>
+    <ol>
+      <li>За отсутвие в течении недели вы получаете 1 выговор!				
+				</li>
+      <li>За нарушения правил вы получаете 2 варна не включая правила за которые вы получаете бан навсегда!				
+				</li>
+      <li>Хотите уменьшить выговоры и варны наигрывайте больше 7 часов 1ч-1 варн				
+				</li>
+      <li>1 Выговор=3 Варна				
+				</li>
+    <p><em>Обязательно к ознакомлению!</em></p>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="block-1">
+        <div class="user">
+          <div class="top-row">Создатель</div>
+          <div class="nickname">PattHs</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-1">
+        <div class="user">
+          <div class="top-row">Руководитель</div>
+          <div class="nickname">Фрозка</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="block-2">
+        <div class="user">
+          <div class="top-row">Гл.Админ (1 сервера)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/9 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-2">
+        <div class="user">
+          <div class="top-row">Гл.Админ (2 сервера)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/9 Варны 0/3</div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Покупной Адм (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Покупной Адм (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Покупной Адм (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Покупной Адм (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Покупной Адм (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Покупной Адм (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Покупной Адм (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Покупной Адм (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 2LVL (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/6 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 2LVL (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/6 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 2LVL (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/6 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 2LVL (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/6 Варны 0/3</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 2LVL (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/6 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 2LVL (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/6 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 2LVL (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/6 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 2LVL (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/6 Варны 0/3</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 1LVL (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 1LVL (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 1LVL (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 1LVL (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 1LVL (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 1LVL (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 1LVL (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 1LVL (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Стажер (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Стажер (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Стажер (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Стажер (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Стажер (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Стажер (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Стажер (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Стажер (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('toggleInterface').addEventListener('click', function() {
+      const container = document.querySelector('.container');
+      const hiddenText = document.getElementById('hidden-text');
+      const btn = this;
+
+      if (container.style.display === 'none') {
+        container.style.display = 'flex';
+        hiddenText.style.display = 'none';
+        btn.textContent = 'Правила';
+      } else {
+        container.style.display = 'none';
+        hiddenText.style.display = 'block';
+        btn.textContent = 'Вернуть';
+      }
+    });
+  </script>
+  
+  <script>
+  document.getElementById('searchInput').addEventListener('input', function() {
+    const searchTerm = this.value.trim().toLowerCase();
+    const userCards = document.querySelectorAll('.user');
+
+    userCards.forEach(card => {
+      const nicknameElement = card.querySelector('.nickname');
+      const nickname = nicknameElement ? nicknameElement.textContent.toLowerCase() : '';
+      
+      if (nickname.includes(searchTerm)) {
+        card.style.display = 'block';
+        card.style.opacity = '1';
+        card.style.transform = 'scale(1)';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
