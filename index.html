@@ -180,6 +180,34 @@
       background: rgba(40, 40, 70, 0.6);
     }
 
+    /* Кнопка-стрелка */
+    .pager-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(10, 10, 20, 0.65);
+      backdrop-filter: blur(10px);
+      border-radius: 14px;
+      padding: 18px;
+      text-align: center;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(100, 100, 255, 0.1);
+      cursor: pointer;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      flex: 4;
+      min-width: 250px;
+    }
+
+    .pager-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+    }
+
+    .pager-btn svg {
+      width: 32px;
+      height: 32px;
+    }
+
     @media (max-width: 900px) {
       .navbar {
         flex-direction: column;
@@ -191,7 +219,8 @@
         align-items: center;
       }
       
-      .block-1, .block-2, .block-3, .block-4, .block-5 {
+      .block-1, .block-2, .block-3, .block-4, .block-5,
+      .pager-btn {
         max-width: 100%;
         width: 100%;
       }
@@ -219,38 +248,36 @@
     <h2>Админ состав проекта</h2>
     <button class="toggle-btn" id="toggleInterface">Правила</button>
   </div>
+
   <input 
-  type="text" 
-  id="searchInput" 
-  placeholder="Поиск по нику..." 
-  aria-label="Поиск по нику администратора"
-  style="
-    margin: 15px 0 25px;
-    padding: 12px 20px;
-    width: 100%;
-    max-width: 600px;
-    border-radius: 12px;
-    border: none;
-    background: rgba(20, 20, 40, 0.7);
-    color: white;
-    font-size: 1.1rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-    outline: none;
-    transition: all 0.3s ease;
-  "
-/>
+    type="text" 
+    id="searchInput" 
+    placeholder="Поиск по нику..." 
+    aria-label="Поиск по нику администратора"
+    style="
+      margin: 15px 0 25px;
+      padding: 12px 20px;
+      width: 100%;
+      max-width: 600px;
+      border-radius: 12px;
+      border: none;
+      background: rgba(20, 20, 40, 0.7);
+      color: white;
+      font-size: 1.1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      outline: none;
+      transition: all 0.3s ease;
+    "
+  />
 
   <div id="hidden-text">
     <h3>Доп правила для администраторов проекта</h3>
     <ol>
-      <li>За отсутвие в течении недели вы получаете 1 выговор!				
-				</li>
-      <li>За нарушения правил вы получаете 2 варна не включая правила за которые вы получаете бан навсегда!				
-				</li>
-      <li>Хотите уменьшить выговоры и варны наигрывайте больше 7 часов 1ч-1 варн				
-				</li>
-      <li>1 Выговор=3 Варна				
-				</li>
+      <li>За отсутвие в течении недели вы получаете 1 выговор!</li>
+      <li>За нарушения правил вы получаете 2 варна не включая правила за которые вы получаете бан навсегда!</li>
+      <li>Хотите уменьшить выговоры и варны наигрывайте больше 7 часов 1ч-1 варн</li>
+      <li>1 Выговор=3 Варна</li>
+    </ol>
     <p><em>Обязательно к ознакомлению!</em></p>
   </div>
 
@@ -275,29 +302,49 @@
         </div>
       </div>
     </div>
+
     <div class="row">
       <div class="block-2">
         <div class="user">
           <div class="top-row">Гл.Админ (1 сервера)</div>
-          <div class="nickname">irotrightnow</div>
-          <a href="https://luxecs2.ru/profiles/76561199813115177/?search=1" target="_blank">Сайт</a>
-          <a href="https://t.me/holysh1tttttt/" target="_blank">ТГ</a>
-          <a href="https://steamcommunity.com/profiles/76561199813115177/" target="_blank">Стим</a>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
           <div class="bottom-row">Выговоры 0/9 Варны 0/3</div>
         </div>
       </div>
       <div class="block-2">
         <div class="user">
           <div class="top-row">Гл.Админ (2 сервера)</div>
-          <div class="nickname">irotrightnow</div>
-          <a href="https://luxecs2.ru/profiles/76561199813115177/?search=1" target="_blank">Сайт</a>
-          <a href="https://t.me/holysh1tttttt/" target="_blank">ТГ</a>
-          <a href="https://steamcommunity.com/profiles/76561199813115177/" target="_blank">Стим</a>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
           <div class="bottom-row">Выговоры 0/9 Варны 0/3</div>
         </div>
       </div>
     </div>
+
     <div class="row">
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Покупной Адм (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Покупной Адм (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
       <div class="block-4">
         <div class="user">
           <div class="top-row">Покупной Адм (1 сервер)</div>
@@ -337,6 +384,24 @@
     </div>
 
     <div class="row">
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Покупной Адм (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Покупной Адм (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
       <div class="block-4">
         <div class="user">
           <div class="top-row">Покупной Адм (2 сервер)</div>
@@ -416,9 +481,29 @@
           <div class="bottom-row">Выговоры 0/6 Варны 0/3</div>
         </div>
       </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 2LVL (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/6 Варны 0/3</div>
+        </div>
+      </div>
     </div>
 
     <div class="row">
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 2LVL (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/6 Варны 0/3</div>
+        </div>
+      </div>
       <div class="block-4">
         <div class="user">
           <div class="top-row">Админ 2LVL (2 сервер)</div>
@@ -485,11 +570,30 @@
       <div class="block-4">
         <div class="user">
           <div class="top-row">Админ 1LVL (1 сервер)</div>
-          <div class="nickname">Soul mate	
-	</div>
+          <div class="nickname">Soul mate</div>
           <a href="https://luxecs2.ru/profiles/76561199446823283/?search=1" target="_blank">Сайт</a>
           <a href="https://t.me/sergey_procuk_toxic/" target="_blank">ТГ</a>
           <a href="https://steamcommunity.com/profiles/76561199446823283/" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 1LVL (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 1LVL (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
           <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
         </div>
       </div>
@@ -529,11 +633,30 @@
       <div class="block-4">
         <div class="user">
           <div class="top-row">Админ 1LVL (2 сервер)</div>
-          <div class="nickname">Soul mate	
-	</div>
+          <div class="nickname">Soul mate</div>
           <a href="https://luxecs2.ru/profiles/76561199446823283/?search=1" target="_blank">Сайт</a>
           <a href="https://t.me/sergey_procuk_toxic/" target="_blank">ТГ</a>
           <a href="https://steamcommunity.com/profiles/76561199446823283/" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 1LVL (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+          <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Админ 1LVL (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
           <div class="bottom-row">Выговоры 0/3 Варны 0/3</div>
         </div>
       </div>
@@ -586,9 +709,45 @@
           <a href="1" target="_blank">Стим</a>
         </div>
       </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Стажер (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Стажер (1 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
     </div>
 
     <div class="row">
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Стажер (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
+      <div class="block-4">
+        <div class="user">
+          <div class="top-row">Стажер (2 сервер)</div>
+          <div class="nickname">х</div>
+          <a href="1" target="_blank">Сайт</a>
+          <a href="1" target="_blank">ТГ</a>
+          <a href="1" target="_blank">Стим</a>
+        </div>
+      </div>
       <div class="block-4">
         <div class="user">
           <div class="top-row">Стажер (2 сервер)</div>
@@ -629,6 +788,7 @@
   </div>
 
   <script>
+    // Переключение правил
     document.getElementById('toggleInterface').addEventListener('click', function() {
       const container = document.querySelector('.container');
       const hiddenText = document.getElementById('hidden-text');
@@ -644,34 +804,76 @@
         btn.textContent = 'Вернуть';
       }
     });
-  </script>
-  
-  <script>
-  document.getElementById('searchInput').addEventListener('input', function() {
-    const searchTerm = this.value.trim().toLowerCase();
-    const userCards = document.querySelectorAll('.user');
 
-    userCards.forEach(card => {
-      const nicknameElement = card.querySelector('.nickname');
-      const nickname = nicknameElement ? nicknameElement.textContent.toLowerCase() : '';
-      
-      if (nickname.includes(searchTerm)) {
-        card.style.display = 'block';
-        card.style.opacity = '1';
-        card.style.transform = 'scale(1)';
-      } else {
-        card.style.display = 'none';
+    // Поиск по нику
+    document.getElementById('searchInput').addEventListener('input', function() {
+      const searchTerm = this.value.trim().toLowerCase();
+      const userCards = document.querySelectorAll('.user');
+
+      userCards.forEach(card => {
+        const nicknameElement = card.querySelector('.nickname');
+        const nickname = nicknameElement ? nicknameElement.textContent.trim().toLowerCase() : '';
+        
+        const block = card.closest('.block-1, .block-2, .block-3, .block-4, .block-5');
+        if (block) {
+          if (nickname.includes(searchTerm)) {
+            block.style.display = 'block';
+          } else {
+            block.style.display = 'none';
+          }
+        }
+      });
+    });
+
+    // Постраничная навигация по карточкам
+    document.querySelectorAll('.row').forEach(row => {
+      const blocks = Array.from(row.children).filter(el =>
+        el.classList.contains('block-1') ||
+        el.classList.contains('block-2') ||
+        el.classList.contains('block-3') ||
+        el.classList.contains('block-4') ||
+        el.classList.contains('block-5')
+      );
+
+      if (blocks.length > 4) {
+        // Сохраняем все карточки
+        const allBlocks = [...blocks];
+        let currentPage = 0;
+        const pageSize = 4;
+
+        // Скрыть все
+        allBlocks.forEach(b => b.style.display = 'none');
+
+        // Создать кнопку
+        const pagerBtn = document.createElement('div');
+        pagerBtn.className = 'block-4 pager-btn';
+        pagerBtn.innerHTML = `
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="11" stroke="white" stroke-width="2" fill="rgba(30,30,50,0.7)"/>
+            <path d="M10 16L14 12L10 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        `;
+        row.appendChild(pagerBtn);
+
+        // Функция отображения страницы
+        const showPage = (page) => {
+          const start = page * pageSize;
+          const end = start + pageSize;
+          allBlocks.forEach((block, i) => {
+            block.style.display = (i >= start && i < end) ? 'block' : 'none';
+          });
+        };
+
+        // Показать первую страницу
+        showPage(0);
+
+        // Обработчик кнопки
+        pagerBtn.addEventListener('click', () => {
+          currentPage = (currentPage + 1) % Math.ceil(allBlocks.length / pageSize);
+          showPage(currentPage);
+        });
       }
     });
-  });
-</script>
-
+  </script>
 </body>
-
 </html>
-
-
-
-
-
-
